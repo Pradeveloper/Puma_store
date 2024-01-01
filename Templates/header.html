@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Home Page</title>
+</head>
+<body>
+    <div class="container">
+        <!--Nav bar start-->
+        <nav class="navbar navbar-expand-lg bg-danger-subtle">
+            <div class="container">
+              <h1>Puma Store</h1>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/home">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/Brands">Brands</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/cart">Cart</a>
+                  </li>
+                  {% if user.is_authenticated %}
+                      <li class="nav-item">
+                          <a class="nav-link" href="/logout">Logout</a>
+                      </li>
+                  {% else %}
+                      <li class="nav-item">
+                          <a class="nav-link" href="/login">Login</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="/Register">Sign Up</a>  <!-- Fix the typo here -->
+                      </li>
+                  {% endif %}
+                </ul>
+              </div>
+            </div>
+          </nav><!--Nav bar end-->

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block 'main'%}
+{% load static %}
+<div class="row mt-3">
+  <!--Filter side bar start-->
+  <div class="col-4 bg-danger-subtle">
+      <h5>Category</h5>
+      <hr>
+      <p><a href="/catfilter/1">Bags</a></p>
+      <p><a href="/catfilter/2">Shoes</a></p>
+      <p><a href="/catfilter/3">watch</a></p>
+      <h5>Filter By Price</h5>
+      <hr>
+      <form action="/range">
+          <div class="mb-3">
+              <label for="input1" class="form-label">Min Value</label>
+              <input type="number" name="min" class="form-control" id="input1" placeholder="Minimum value">
+          </div>
+          <div class="mb-3">
+              <label for="input2" class="form-label">Max Value</label>
+              <input type="number" name="max" class="form-control" id="input2" placeholder="Maximum value">
+          </div>
+          <div class="mb-3">
+              <input type="submit" class="btn btn-primary">
+          </div>
+      </form>
+      <h5>sort by</h5>
+      <hr>
+      <p><a href="/sort/0">Low to High</a></p>
+      <p><a href="/sort/1">Hihg to Low</a></p>
+  </div><!--Filter side bar end-->
+  <!--Cards-->
+  <div class="col-8">
+      <h3>Collections</h3>
+      <div class="row">
+        {% for x in Products %}
+          <!--Product 1-->
+          <div class="col-4">
+              <div class="card mt-3" style="width: 100%;">
+                  <img src="{{x.pimage.url}}"height="300px"class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ x.name }}</h5>
+                    <p class="card-text">Rs. {{ x.price }}</p>
+                    {% if x.cat == 1 %}
+                          <p class="card-text">Bags</p>
+                      {% elif x.cat == 2 %}
+                          <p class="card-text">Shoes</p>
+                      {% else %}
+                          <p class="card-text">watch</p>
+                      {% endif %}
+                      <a href="/pdetails/{{x.id}}"class="btn btn-info">See Details</a>
+                  </div>
+                </div>
+          </div>
+          {% endfor %}
+    </div>
+      
+  
+    
+  </div>
+</div>
+{% endblock 'main'%}
